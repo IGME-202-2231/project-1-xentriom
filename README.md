@@ -4,8 +4,8 @@
 
 ### Student Info
 
--   Name: YOUR NAME
--   Section: ##
+-   Name: Jason Chen
+-   Section: 05
 
 ## Game Design
 
