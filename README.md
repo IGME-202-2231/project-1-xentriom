@@ -9,7 +9,7 @@
 
 ## Game Design
 
--   Camera Orientation: _How are the art assets viewed? (ie. topdown or side)_ first person
+-   Camera Orientation: _How are the art assets viewed? (ie. topdown or side)_ top down
 -   Camera Movement: _How does the camera move in your game? (if at all)_ doesn't move as of writing this
 -   Player Health: _How are you handling player health? (health bar, lives, ?)_ health bar
 -   End Condition: _How does a game/round/level end?_ Castle have no health or Player have no health
