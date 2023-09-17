@@ -29,11 +29,13 @@ Defend and defeat the swarm of monsters approaching the castle right behind you.
 -   Switch Weapon: E
 -   Attack: Left-click
 -   Shield: Right-click
+-   Sprint: Shift
 -   Dash: Space bar
 
 ## You Additions
 
 - Various enemies
+- Stamina bar
 - Customizable load-outs
 - Hopefully, a small shop for you to purchase items
 
