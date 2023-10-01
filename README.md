@@ -9,28 +9,35 @@
 
 ## Game Design
 
--   Camera Orientation: _How are the art assets viewed from? (ie. topdown or side)_
--   Camera Movement: _How does the camera move in your game? (if at all)_
--   Player Health: _How are you handling player health? (healthbar, lives, ?)_
--   End Condition: _How does a game/round/level end?_
--   Scoring: _How does the player earn points in your game?_
+-   Camera Orientation: Top-down view
+-   Camera Movement: The camera will not move at the of writing this.
+-   Player Health: The player, castle, and enemies will all have their own respective health bar.
+-   End Condition: For the game to end, either the player or the castle loses all of its health. Each wave is completed when all the enemies are defeated.
+-   Scoring: Killing the enemies will grant points, finishing each wave will also grant points and additional points will be rewarded if no damage was taken.
 
 ### Game Description
 
-_A brief explanation of your game. Inculde what is the objective for the player. Think about what would go on the back of a game box._
+Defend and defeat the swarm of monsters approaching the castle right behind you. Blast them with your gun, slice them with your sword, and maybe hide behind your shield. How long will you last against the endless waves of enemies?
 
 ### Controls
 
 -   Movement
-    -   Up: 
-    -   Down: 
-    -   Left: 
-    -   Right: 
--   Fire: 
+    -   Up: W
+    -   Down: S
+    -   Left: A
+    -   Right: D
+-   Switch Weapon: E
+-   Attack: Left-click
+-   Shield: Right-click
+-   Sprint: Shift
+-   Dash: Space bar
 
 ## You Additions
 
-_List out what you added to your game to make it different for you_
+- Various enemies
+- Stamina bar
+- Customizable load-outs
+- Hopefully, a small shop for you to purchase items
 
 ## Sources
 
