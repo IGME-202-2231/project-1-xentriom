@@ -455,7 +455,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621803052}
-  m_Text: Car is a temp sprite until i find a suitable player
+  m_Text: Car is a temp sprite until my friends draw the player
   m_OffsetZ: 0
   m_CharacterSize: 0.01
   m_LineSpacing: 1
