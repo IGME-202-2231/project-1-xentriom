@@ -7,11 +7,12 @@ using UnityEngine.InputSystem;
 public class InputController : MonoBehaviour
 {
     // Variable field
-    [SerializeField] MovementController controller;
+    [SerializeField] MovementController movement;
+    [SerializeField] AttackController attack;
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        controller.SetDirection(context.ReadValue<Vector2>());
+        movement.SetDirection(context.ReadValue<Vector2>());
     }
 
     public void OnMouseClick(InputAction.CallbackContext context)
@@ -20,11 +21,11 @@ public class InputController : MonoBehaviour
         {
             if (Mouse.current.leftButton.isPressed)
             {
-                Debug.Log("Left Mouse Click");
+                attack.SwingSword();
             }
             else if (Mouse.current.rightButton.isPressed)
             {
-                Debug.Log("Right Mouse Click");
+                attack.FireGun();
             }
         };
     }
