@@ -28,20 +28,18 @@ public class MovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        velocity = direction * speed * Time.deltaTime;
+        velocity = speed * Time.deltaTime * direction;
         objectPosition += velocity;
 
         transform.position = objectPosition;
 
-        // Check if the object's x is out of bound
-        if (transform.position.x > camWidth / 2 + .5 ||
-            transform.position.x < -(camWidth / 2 + .5))
-        {
-            objectPosition.x *= -1f;
-            transform.position = objectPosition;
-        }
+        // Clamp the x value to be between -camWidth/2 and 0, which are the edges of the left half of the screen
+        objectPosition.x = Mathf.Clamp(objectPosition.x, -camWidth / 2f + .5f, 0f - (camWidth / 2 * .20f));
 
-        // Check if the object's y is out of bound
+        // Assign the clamped object position to the object's transform
+        transform.position = objectPosition;
+
+        // Allow the object to wrap around the screen
         if (transform.position.y > camHeight / 2 + .5 ||
             transform.position.y < -(camHeight / 2 + .5))
         {
