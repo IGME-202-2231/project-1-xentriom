@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
+    // Variable field
     [SerializeField] float speed = 5.0f;
     SpriteRenderer spriteRenderer;
     Camera cam;
@@ -17,14 +18,13 @@ public class MovementController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         cam = Camera.main;
+
         camHeight = 2.0f * cam.orthographicSize;
         camWidth = camHeight * cam.aspect;
 
         objectPosition = transform.position;
-        // Get the SpriteRenderer component of the current game object
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
     }
 
     // Update is called once per frame
