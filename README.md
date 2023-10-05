@@ -12,7 +12,7 @@
 -   Camera Orientation: Top-down view
 -   Camera Movement: The camera will not move at the of writing this.
 -   Player Health: The player, castle, and enemies will all have their own respective health bar.
--   End Condition: For the game to end, either the player or the castle loses all of its health. Each wave is completed when all the enemies are defeated.
+-   End Condition: For the game to end the player must lose all of their health.
 -   Scoring: Killing the enemies will grant points, finishing each wave will also grant points and additional points will be rewarded if no damage was taken.
 
 ### Game Description
@@ -26,23 +26,20 @@ Defend and defeat the swarm of monsters approaching the castle right behind you.
     -   Down: S
     -   Left: A
     -   Right: D
--   Switch Weapon: E
--   Attack: Left-click
--   Shield: Right-click
--   Sprint: Shift
+-   Sword Attack: Left-click
+-   Ranged Attack: Right-click
+-   Shield: Shift
 -   Dash: Space bar
 
 ## You Additions
 
 - Various enemies
 - Stamina bar
-- Customizable load-outs
-- Hopefully, a small shop for you to purchase items
+- Customizable load-outs (Each gun/sword will have different damage/range/reload)
 
 ## Sources
 
--   _List all project sources here –models, textures, sound clips, assets, etc._
--   _If an asset is from the Unity store, include a link to the page and the author’s name_
+-   Gun and ammo models: https://kaylousberg.itch.io/gun-assets by Kay Lousberg
 
 ## Known Issues
 
