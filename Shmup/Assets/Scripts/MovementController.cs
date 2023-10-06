@@ -40,14 +40,6 @@ public class MovementController : MonoBehaviour
 
         // Assign the clamped object position to the object's transform
         transform.position = objectPosition;
-
-        // Allow the object to wrap around the screen
-        if (transform.position.y > camHeight / 2 + .5 ||
-            transform.position.y < -(camHeight / 2 + .5))
-        {
-            objectPosition.y *= -1f;
-            transform.position = objectPosition;
-        }
     }
 
     /// <summary>
