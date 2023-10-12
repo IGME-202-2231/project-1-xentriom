@@ -6,17 +6,17 @@ public class MovementController : MonoBehaviour
 {
     // Variable field
     [SerializeField] float speed = 5.0f;
-    SpriteRenderer spriteRenderer;
-    Camera cam;
-    float camHeight;
-    float camWidth;
+
+    private SpriteRenderer spriteRenderer;
+    private Camera cam;
+
+    private float camHeight;
+    private float camWidth;
     private bool isJumping;
-    private Coroutine jumpCoroutine;
 
-
-    Vector3 objectPosition = Vector3.zero;
-    Vector3 direction = Vector3.zero;
-    Vector3 velocity = Vector3.zero;
+    private Vector3 objectPosition = Vector3.zero;
+    private Vector3 direction = Vector3.zero;
+    private Vector3 velocity = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -76,18 +76,21 @@ public class MovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Set the object's position to the top of the jump arc and then move it down to the ground
+    /// Gradually move the object up and down through a parabola
     /// </summary>
     /// <returns></returns>
     IEnumerator ToJump()
     {
+        // Set jumping to true
         isJumping = true;
 
+        // Set the start position, initial velocity, gravity, and time
         Vector3 startPos = objectPosition;
         float initialVelocity = 10f;
         float gravity = 14f;
         float time = 0f;
 
+        // Move the object up through a parabola until it reaches the start position
         while (objectPosition.y >= startPos.y)
         {
             time += Time.deltaTime;
@@ -96,6 +99,7 @@ public class MovementController : MonoBehaviour
             yield return null;
         }
 
+        // Set jumping to false
         isJumping = false;
     }
 }
