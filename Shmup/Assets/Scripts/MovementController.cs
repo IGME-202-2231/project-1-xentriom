@@ -6,9 +6,7 @@ public class MovementController : MonoBehaviour
 {
     // Variable field
     [SerializeField] float speed = 5.0f;
-    [SerializeField] float jumpForce = 5.0f;
     SpriteRenderer spriteRenderer;
-    Rigidbody2D rb;
     Camera cam;
     float camHeight;
     float camWidth;
@@ -21,7 +19,6 @@ public class MovementController : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
 
         camHeight = 2.0f * cam.orthographicSize;
@@ -66,6 +63,6 @@ public class MovementController : MonoBehaviour
     public void Jump()
     {
         Debug.Log("Jump");
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        
     }
 }
