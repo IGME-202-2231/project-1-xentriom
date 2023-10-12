@@ -55,6 +55,8 @@ public class Gun : MonoBehaviour
         ammoDict.Add(AmmoType.Small, AmmoSprite[0]);
         ammoDict.Add(AmmoType.Medium, AmmoSprite[1]);
         ammoDict.Add(AmmoType.Large, AmmoSprite[2]);
+
+        UseGun(GunType.Pistol);
     }
 
     public void UsePistol() { UseGun(GunType.Pistol); }

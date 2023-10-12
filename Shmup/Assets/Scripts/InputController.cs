@@ -30,9 +30,9 @@ public class InputController : MonoBehaviour
         };
     }
 
-    public void OnDash(InputAction.CallbackContext context)
+    public void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("Dash");
+        movement.Jump();
     }
 
     public void OnSheild(InputAction.CallbackContext context)
