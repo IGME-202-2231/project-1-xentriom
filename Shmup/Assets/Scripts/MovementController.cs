@@ -10,6 +10,9 @@ public class MovementController : MonoBehaviour
     Camera cam;
     float camHeight;
     float camWidth;
+    private bool isJumping;
+    private Coroutine jumpCoroutine;
+
 
     Vector3 objectPosition = Vector3.zero;
     Vector3 direction = Vector3.zero;
@@ -25,6 +28,7 @@ public class MovementController : MonoBehaviour
         camWidth = camHeight * cam.aspect;
 
         objectPosition = transform.position;
+        isJumping = false;
     }
 
     // Update is called once per frame
@@ -60,9 +64,38 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// If the object is not already jumping, start the jump coroutine
+    /// </summary>
     public void Jump()
     {
-        Debug.Log("Jump");
-        
+        if (!isJumping)
+        {
+            StartCoroutine(ToJump());
+        }
+    }
+
+    /// <summary>
+    /// Set the object's position to the top of the jump arc and then move it down to the ground
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator ToJump()
+    {
+        isJumping = true;
+
+        Vector3 startPos = objectPosition;
+        float initialVelocity = 10f;
+        float gravity = 14f;
+        float time = 0f;
+
+        while (objectPosition.y >= startPos.y)
+        {
+            time += Time.deltaTime;
+            float y = startPos.y + initialVelocity * time - 0.5f * gravity * time * time;
+            objectPosition = new Vector3(objectPosition.x, y, objectPosition.z);
+            yield return null;
+        }
+
+        isJumping = false;
     }
 }
