@@ -9,6 +9,7 @@ public class InputController : MonoBehaviour
     // Variable field
     [SerializeField] MovementController movement;
     [SerializeField] AttackController attack;
+    [SerializeField] Monster_Fly spawn;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -21,11 +22,13 @@ public class InputController : MonoBehaviour
         {
             if (Mouse.current.leftButton.isPressed)
             {
-                attack.SwingSword();
+                attack.Swing();
             }
             else if (Mouse.current.rightButton.isPressed)
             {
-                attack.FireGun();
+                Vector2 mousePosition = Mouse.current.position.ReadValue();
+                mousePosition = mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                attack.Throw(mousePosition);
             }
         };
     }
@@ -38,5 +41,6 @@ public class InputController : MonoBehaviour
     public void OnSheild(InputAction.CallbackContext context)
     {
         Debug.Log("Sheild");
+        spawn.Spawn();
     }
 }

@@ -1,30 +1,62 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackController : MonoBehaviour
 {
+    [SerializeField] SpriteRenderer dagger;
+    [SerializeField] float speed = 16f;
+    [SerializeField] float spin = 500f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void SwingSword ()
+    public void Swing()
     {
         // Swing sword in front of the player
         Debug.Log("Swing Sword");
     }
 
-    public void FireGun ()
+    public void Throw(Vector2 mousePosition)
     {
-        // Spawn bullets and fire in the direction of the mouse
-        Debug.Log("Fire Gun");
+        // Instantiate a new dagger at the player's position
+        SpriteRenderer newDagger = Instantiate(dagger, transform.position, Quaternion.identity);
+
+        // Get the direction vector from the player to the mouse
+        Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
+
+        // Start a coroutine to move the dagger in the direction of the mouse
+        StartCoroutine(MoveDagger(newDagger.transform, direction));
+    }
+
+    /// <summary>
+    /// A coroutine that moves the dagger with a constant speed and rotation
+    /// </summary>
+    /// <param name="daggerTransform"></param>
+    /// <param name="direction"></param>
+    /// <returns></returns>
+    IEnumerator MoveDagger(Transform daggerTransform, Vector2 direction)
+    {
+        // While the dagger is active in the scene
+        while (daggerTransform.gameObject.activeSelf)
+        {
+            // Move the dagger by adding the direction vector multiplied by speed and time
+            daggerTransform.position += (Vector3)direction * speed * Time.deltaTime;
+
+            // Rotate the dagger by adding the spin value multiplied by time
+            daggerTransform.Rotate(0, 0, spin * Time.deltaTime);
+
+            yield return null;
+        }
     }
 }
