@@ -14,7 +14,7 @@ public class RoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bat = new Monster_Fly();
+        //bat = new Monster_Fly();
         text = Instantiate(textMesh, new Vector3(0f, 0f, 0f), Quaternion.identity);
         round = 0;
         NextRound();
@@ -33,7 +33,7 @@ public class RoundManager : MonoBehaviour
             // Spawn wave
             for (int i = 0; i < round; i++)
             {
-                bat.Spawn();
+                // Spawn monster
             }
     }
 

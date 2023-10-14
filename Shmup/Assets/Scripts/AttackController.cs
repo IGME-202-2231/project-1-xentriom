@@ -6,8 +6,10 @@ using UnityEngine;
 public class AttackController : MonoBehaviour
 {
     [SerializeField] SpriteRenderer dagger;
-    [SerializeField] float speed = 16f;
-    [SerializeField] float spin = 500f;
+    private float lastThrown;
+    private float cooldown = 0.6f;
+    private float speed = 16f;
+    private float spin = 500f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,14 +31,20 @@ public class AttackController : MonoBehaviour
 
     public void Throw(Vector2 mousePosition)
     {
-        // Instantiate a new dagger at the player's position
-        SpriteRenderer newDagger = Instantiate(dagger, transform.position, Quaternion.identity);
+        float currentTime = Time.time;
+        if (currentTime > lastThrown + cooldown)
+        {
+            // Instantiate a new dagger at the player's position
+            SpriteRenderer newDagger = Instantiate(dagger, transform.position, Quaternion.identity);
 
-        // Get the direction vector from the player to the mouse
-        Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
+            // Get the direction vector from the player to the mouse
+            Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
 
-        // Start a coroutine to move the dagger in the direction of the mouse
-        StartCoroutine(MoveDagger(newDagger.transform, direction));
+            // Start a coroutine to move the dagger in the direction of the mouse
+            StartCoroutine(MoveDagger(newDagger.transform, direction));
+
+            lastThrown = currentTime;
+        }
     }
 
     /// <summary>

@@ -34,7 +34,7 @@ public class Monster_Fly : Monster
     /// </summary>
     public override void Spawn()
     {
-        
+        // Spawn monster
     }
 
     /// <summary>
