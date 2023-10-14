@@ -36,7 +36,8 @@ Defeat the swarm of monsters approaching you. Blast them with your gun, slice th
 
 ## Sources
 
--   Dagger assets: https://free-game-assets.itch.io/free-game-icons-daggers 
+-   Dagger assets: https://free-game-assets.itch.io/free-game-icons-daggers
+-   Monster assets: https://pixfinity.itch.io/the-dungeon-pack-1
 -   Background music: https://www.chosic.com/download-audio/27972/
 
 ## Known Issues
