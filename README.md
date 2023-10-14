@@ -36,8 +36,8 @@ Defeat the swarm of monsters approaching you. Blast them with your gun, slice th
 
 ## Sources
 
--   Gun and ammo models by Kay Lousberg: https://kaylousberg.itch.io/gun-assets
--   Background music by Darren Curtis: https://www.chosic.com/download-audio/27972/
+-   Dagger assets: https://free-game-assets.itch.io/free-game-icons-daggers 
+-   Background music: https://www.chosic.com/download-audio/27972/
 
 ## Known Issues
 
