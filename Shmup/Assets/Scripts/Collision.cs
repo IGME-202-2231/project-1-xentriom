@@ -17,10 +17,7 @@ public class Collision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ()
-        {
-
-        }
+        
     }
 
     public void IsColliding(Vector2 spriteA, Vector2 spriteB)
