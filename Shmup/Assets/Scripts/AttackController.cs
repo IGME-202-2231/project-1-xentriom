@@ -6,6 +6,7 @@ using UnityEngine;
 public class AttackController : MonoBehaviour
 {
     [SerializeField] SpriteRenderer dagger;
+    SpriteRenderer newDagger;
     private float lastThrown;
     private float cooldown = 0.6f;
     private float speed = 16f;
@@ -35,7 +36,7 @@ public class AttackController : MonoBehaviour
         if (currentTime > lastThrown + cooldown)
         {
             // Instantiate a new dagger at the player's position
-            SpriteRenderer newDagger = Instantiate(dagger, transform.position, Quaternion.identity);
+            newDagger = Instantiate(dagger, transform.position, Quaternion.identity);
 
             // Get the direction vector from the player to the mouse
             Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;

@@ -1,71 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class MonsterAttack : MonoBehaviour
 {
     private RoundManager roundManager;
     [SerializeField] SpriteRenderer player;
-    [SerializeField] SpriteRenderer fireball;
+    [SerializeField] SpriteRenderer fireballPrefab;
+    [SerializeField] Camera cam;
+    SpriteRenderer fireball;
+    private float fireballSpeed = 10f;
+    private bool canFire = true;
+
+    private List<SpriteRenderer> ActiveFireballs = new List<SpriteRenderer>();
+    private List<SpriteRenderer> spawned = new List<SpriteRenderer>();
 
     // Start is called before the first frame update
     void Start()
     {
+        cam = Camera.main;
         roundManager = FindObjectOfType<RoundManager>();
+        spawned = roundManager.GetSpawnedMonsters();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (roundManager.SpawnedMonsters.Count > 0)
+        for (int i = 0; i < spawned.Count; i++)
         {
-            foreach (var monster in roundManager.SpawnedMonsters)
+            if (IsVisibleOnCamera(spawned[i].transform.position) && canFire)
             {
-                // Add your monster attack logic here
-                // Example: monster.AttackPlayer();
+                StartCoroutine(FireProjectile(spawned[i].transform.position));
+                canFire = false;
+                StartCoroutine(ResetFireCooldown());
             }
         }
-        Fire();
     }
 
-    public void Fire()
+    private IEnumerator FireProjectile(Vector3 monsterPosition)
     {
-        StartCoroutine(FireCoroutine());
-    }
+        Vector3 playerPosition = player.transform.position;
+        Vector3 direction = (playerPosition - monsterPosition).normalized;
 
-    private IEnumerator FireCoroutine()
-    {
-        while (true)
+        fireball = Instantiate(fireballPrefab, monsterPosition, Quaternion.identity);
+        ActiveFireballs.Add(fireball);
+
+        while (IsVisibleOnCamera(fireball.transform.position))
         {
-            foreach (var monster in roundManager.SpawnedMonsters)
-            {
-                // Instantiate a fireball prefab at the monster's location
-                Instantiate(fireball, monster.transform.position, Quaternion.identity);
-
-                // Get the direction towards the player
-                Vector3 direction = (player.transform.position - monster.transform.position).normalized;
-
-                // Move the fireball towards the player's location
-                float speed = 5f; // Adjust this value for desired speed
-                float distance = Vector3.Distance(monster.transform.position, player.transform.position);
-                float duration = distance / speed;
-                float elapsedTime = 0f;
-
-                while (elapsedTime < duration)
-                {
-                    elapsedTime += Time.deltaTime;
-                    float t = elapsedTime / duration;
-                    Vector3 newPosition = Vector3.Lerp(monster.transform.position, player.transform.position, t);
-                    fireball.transform.position = newPosition;
-                    yield return null;
-                }
-
-                // Destroy the fireball
-                Destroy(fireball);
-            }
-
-            // Wait for 1 second before shooting again
-            yield return new WaitForSeconds(1f);
+            fireball.transform.position += direction * Time.deltaTime * fireballSpeed;
+            yield return null;
         }
+
+        ActiveFireballs.Remove(fireball);
+        Destroy(fireball);
+    }
+
+    private IEnumerator ResetFireCooldown()
+    {
+        yield return new WaitForSeconds(2f);
+        canFire = true;
+    }
+
+    private bool IsVisibleOnCamera(Vector3 position)
+    {
+        Vector3 viewportPos = cam.WorldToViewportPoint(position);
+        return viewportPos.x >= 0 && viewportPos.x <= 1 && viewportPos.y >= 0 && viewportPos.y <= 1;
     }
 }

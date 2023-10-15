@@ -18,6 +18,10 @@ public class RoundManager : MonoBehaviour
     [SerializeField] SpriteRenderer groundedMonsterPrefab;
 
     public List<SpriteRenderer> SpawnedMonsters { get { return spawnedMonsters; } }
+    public List<SpriteRenderer> GetSpawnedMonsters()
+    {
+        return spawnedMonsters;
+    }
 
     public SpriteRenderer SpawnFlyingMonster()
     {
@@ -43,7 +47,7 @@ public class RoundManager : MonoBehaviour
             TempKillAll();
         }
         if (spawnedMonsters.Count > 0) MoveMonster();
-        if (spawnedMonsters.Count == 0) StartNextRound();
+        if (spawnedMonsters.Count == 0) { StartNextRound(); }
     }
 
     /// <summary>
@@ -255,5 +259,11 @@ public class RoundManager : MonoBehaviour
         }
 
         spawnedMonsters.Clear();
+    }
+
+    public void KillMonster(SpriteRenderer monster)
+    {
+        spawnedMonsters.Remove(monster);
+        Destroy(monster.gameObject);
     }
 }
