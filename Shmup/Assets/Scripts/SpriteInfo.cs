@@ -7,13 +7,7 @@ public class SpriteInfo : MonoBehaviour
     // Variable field
     [SerializeField] new SpriteRenderer renderer;
     [SerializeField] Vector2 rectSize = Vector2.one;
-    [SerializeField] float radius = 1f;
     private bool isColliding = false;
-
-    /// <summary>
-    /// Get the radius of the sprite
-    /// </summary>
-    public float Radius { get { return radius; } }
 
     /// <summary>
     /// Set the collision state of the sprite
@@ -68,9 +62,6 @@ public class SpriteInfo : MonoBehaviour
         Gizmos.color = Color.green;
 
         // Draw the AABB collision bounds of sprite
-            Gizmos.DrawWireCube(transform.position, rectSize);
-
-        // Draw the circle collision bounds of sprite
-            Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireCube(transform.position, rectSize);
     }
 }
