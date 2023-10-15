@@ -9,7 +9,6 @@ public class InputController : MonoBehaviour
     // Variable field
     [SerializeField] MovementController movement;
     [SerializeField] AttackController attack;
-    [SerializeField] Monster_Fly spawn;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -41,6 +40,5 @@ public class InputController : MonoBehaviour
     public void OnSheild(InputAction.CallbackContext context)
     {
         Debug.Log("Sheild");
-        spawn.Spawn();
     }
 }

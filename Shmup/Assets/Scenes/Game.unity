@@ -132,8 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 49930727}
-  - component: {fileID: 49930729}
-  - component: {fileID: 49930730}
+  - component: {fileID: 49930728}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -156,7 +155,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &49930729
+--- !u!114 &49930728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,20 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2134eed8621b6342a86834d291beb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMesh: {fileID: 4632369402818700318, guid: 2b4658feaeefbab4a9b71352657a6a39, type: 3}
---- !u!114 &49930730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49930726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b3d70625f979c4baa9191e14ba7057, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spritePrefab: {fileID: 5000579304679503844, guid: f3db769f919e3544997a5081de3b6a82, type: 3}
+  textPrefab: {fileID: 4632369402818700318, guid: 2b4658feaeefbab4a9b71352657a6a39, type: 3}
+  round: 0
+  flyingMonsterPrefab: {fileID: 5000579304679503844, guid: f3db769f919e3544997a5081de3b6a82, type: 3}
+  groundedMonsterPrefab: {fileID: 7953796624672560891, guid: 2fbeab3323c7d2d49ae220ef1daed1b3, type: 3}
 --- !u!1 &391793930
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +274,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 391793934}
   attack: {fileID: 391793937}
-  spawn: {fileID: 0}
 --- !u!114 &391793934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,10 +377,10 @@ MonoBehaviour:
     m_ActionName: Player/Dash[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 391793933}
-        m_TargetAssemblyTypeName: InputController, Assembly-CSharp
-        m_MethodName: OnSheild
-        m_Mode: 0
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RoundManager, Assembly-CSharp
+        m_MethodName: NextRound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -421,8 +409,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dagger: {fileID: 7953796624672560891, guid: 2fbeab3323c7d2d49ae220ef1daed1b3, type: 3}
-  speed: 16
-  spin: 360
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +735,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1751922690}
+  - component: {fileID: 1751922691}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -771,3 +758,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1751922691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751922689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fc14d262ddb3af4d8ef42911a0f55b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePrefab: {fileID: 5000579304679503844, guid: f3db769f919e3544997a5081de3b6a82, type: 3}

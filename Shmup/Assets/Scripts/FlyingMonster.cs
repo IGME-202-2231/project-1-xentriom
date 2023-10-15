@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster_Fly : Monster
+public class FlyingMonster : MonoBehaviour
 {
     [SerializeField] SpriteRenderer spritePrefab;
     private SpriteRenderer monster;
-    private int health = 100;
+    private float health = 100;
     private bool isDead = false;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
     // Update is called once per frame
     void Update()
@@ -15,11 +21,7 @@ public class Monster_Fly : Monster
         if (isDead) Destroy();
     }
 
-    /// <summary>
-    /// Remove health by damage amount
-    /// </summary>
-    /// <param name="damage">Health to lose</param>
-    public override void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         health -= damage;
 
@@ -29,18 +31,13 @@ public class Monster_Fly : Monster
         }
     }
 
-    /// <summary>
-    /// Spawns the monster
-    /// </summary>
-    public override void Spawn()
+    public SpriteRenderer Spawn()
     {
         // Spawn monster
+        return monster = Instantiate(spritePrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
     }
 
-    /// <summary>
-    /// Destroys the monster
-    /// </summary>
-    public override void Destroy()
+    public void Destroy()
     {
         Destroy(monster.gameObject);
     }
