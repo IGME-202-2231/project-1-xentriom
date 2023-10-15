@@ -88,13 +88,13 @@ public class RoundManager : MonoBehaviour
         {
             // 1 grounded monster
             spawnedMonsters.Add(SpawnGroundedMonster());
-            spawnedMonsters[0].transform.position = new Vector2(8.41f, -4.04f);
+            spawnedMonsters[0].transform.position = new Vector2(8.75f, -4.44f);
         }
         else if (round == 2)
         {
             // 1 flying monster
             spawnedMonsters.Add(SpawnFlyingMonster());
-            spawnedMonsters[0].transform.position = new Vector2(8.84f, -0.3f);
+            spawnedMonsters[0].transform.position = new Vector2(8.84f, -0.3f);  
         }
         else if (round > 2 && round <= 10)
         {
@@ -110,7 +110,7 @@ public class RoundManager : MonoBehaviour
                     {
                         monster.transform.position = new Vector2(
                             Random.Range(8.5f, 13f),
-                            Random.Range(-4.5f, -3.4f));
+                            Random.Range(-5.15f, -3.9f));
                     }
                     if (monster.sprite == flyingMonsterPrefab.sprite)
                     {
@@ -138,7 +138,7 @@ public class RoundManager : MonoBehaviour
                     {
                         monster.transform.position = new Vector2(
                             Random.Range(8.5f, 13f + round),
-                            Random.Range(-4.5f, -3.4f));
+                            Random.Range(-5.15f, -3.9f));
                     }
                     if (monster.sprite == flyingMonsterPrefab.sprite)
                     {
@@ -166,7 +166,7 @@ public class RoundManager : MonoBehaviour
                     {
                         monster.transform.position = new Vector2(
                             Random.Range(8.5f, 13f + round),
-                            Random.Range(-4.5f, -3.4f));
+                            Random.Range(-5.15f, -3.9f));
                     }
                     if (monster.sprite == flyingMonsterPrefab.sprite)
                     {
