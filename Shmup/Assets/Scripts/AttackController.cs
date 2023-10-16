@@ -7,21 +7,30 @@ public class AttackController : MonoBehaviour
 {
     [SerializeField] SpriteRenderer dagger;
     SpriteRenderer newDagger;
+    private Camera cam;
     private float lastThrown;
     private float cooldown = 0.6f;
     private float speed = 16f;
     private float spin = 500f;
 
+    private List<SpriteRenderer> activeDaggers = new List<SpriteRenderer>();
+
+    public List<SpriteRenderer> ActiveDaggers
+    {
+        get { return activeDaggers; }
+        set { activeDaggers = value; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-
+        cam = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        CheckDaggersOutsideCameraView();
     }
 
     public void Swing()
@@ -35,8 +44,9 @@ public class AttackController : MonoBehaviour
         float currentTime = Time.time;
         if (currentTime > lastThrown + cooldown)
         {
-            // Instantiate a new dagger at the player's position
+            // Instantiate a new dagger at the player's position and add it to list
             newDagger = Instantiate(dagger, transform.position, Quaternion.identity);
+            activeDaggers.Add(newDagger);
 
             // Get the direction vector from the player to the mouse
             Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
@@ -66,6 +76,25 @@ public class AttackController : MonoBehaviour
             daggerTransform.Rotate(0, 0, spin * Time.deltaTime);
 
             yield return null;
+        }
+    }
+
+    public void CheckDaggersOutsideCameraView()
+    {
+        for (int i = activeDaggers.Count - 1; i >= 0; i--)
+        {
+            SpriteRenderer daggerRenderer = activeDaggers[i];
+            Vector3 daggerViewportPosition = cam.WorldToViewportPoint(daggerRenderer.transform.position);
+
+            // Check if dagger is outside the camera view
+            if (daggerViewportPosition.x < 0 || daggerViewportPosition.x > 1 || daggerViewportPosition.y < 0 || daggerViewportPosition.y > 1)
+            {
+                // Remove dagger from the active daggers list
+                activeDaggers.RemoveAt(i);
+
+                // Destroy the game object
+                Destroy(daggerRenderer.gameObject);
+            }
         }
     }
 }

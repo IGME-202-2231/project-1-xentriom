@@ -17,10 +17,9 @@ public class RoundManager : MonoBehaviour
     [SerializeField] SpriteRenderer flyingMonsterPrefab;
     [SerializeField] SpriteRenderer groundedMonsterPrefab;
 
-    public List<SpriteRenderer> SpawnedMonsters { get { return spawnedMonsters; } }
-    public List<SpriteRenderer> GetSpawnedMonsters()
-    {
-        return spawnedMonsters;
+    public List<SpriteRenderer> SpawnedMonsters { 
+        get { return spawnedMonsters; } 
+        set { spawnedMonsters = value;}    
     }
 
     public SpriteRenderer SpawnFlyingMonster()
@@ -42,12 +41,8 @@ public class RoundManager : MonoBehaviour
 
     private void Update()
     {
-        if (UnityEngine.InputSystem.Keyboard.current.yKey.wasPressedThisFrame)
-        {
-            TempKillAll();
-        }
         if (spawnedMonsters.Count > 0) MoveMonster();
-        if (spawnedMonsters.Count == 0) { StartNextRound(); }
+        StartCoroutine(CheckMonstersEmptyCoroutine());
     }
 
     /// <summary>
@@ -58,7 +53,7 @@ public class RoundManager : MonoBehaviour
         round++;
         text.text = $"Round: {round}";
         SpawnMonster(round);
-        StartCoroutine(DisableTextAfterSeconds(2));
+        CheckMonstersEmptyAndStartNextRound();
     }
 
     /// <summary>
@@ -251,19 +246,21 @@ public class RoundManager : MonoBehaviour
         }
     }
 
-    public void TempKillAll()
+    public void CheckMonstersEmptyAndStartNextRound()
     {
-        foreach (var monster in spawnedMonsters)
-        {
-            Destroy(monster.gameObject);
-        }
-
-        spawnedMonsters.Clear();
+        StartCoroutine(CheckMonstersEmptyCoroutine());
     }
 
-    public void KillMonster(SpriteRenderer monster)
+    private IEnumerator CheckMonstersEmptyCoroutine()
     {
-        spawnedMonsters.Remove(monster);
-        Destroy(monster.gameObject);
+        if (spawnedMonsters.Count == 0)
+        {
+            yield return new WaitForSeconds(2f);
+
+            if (spawnedMonsters.Count == 0)
+            {
+                StartNextRound();
+            }
+        }
     }
 }

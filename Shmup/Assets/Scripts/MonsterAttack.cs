@@ -11,17 +11,24 @@ public class MonsterAttack : MonoBehaviour
     [SerializeField] Camera cam;
     SpriteRenderer fireball;
     private float fireballSpeed = 10f;
-    private bool canFire = true;
+    private bool canFire;
 
-    private List<SpriteRenderer> ActiveFireballs = new List<SpriteRenderer>();
+    private List<SpriteRenderer> activeFireballs = new List<SpriteRenderer>();
     private List<SpriteRenderer> spawned = new List<SpriteRenderer>();
+
+    public List<SpriteRenderer> ActiveFireballs
+    {
+        get { return activeFireballs; }
+        set { activeFireballs = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
         roundManager = FindObjectOfType<RoundManager>();
-        spawned = roundManager.GetSpawnedMonsters();
+        spawned = roundManager.SpawnedMonsters;
+        canFire = true;
     }
 
     // Update is called once per frame
@@ -43,17 +50,19 @@ public class MonsterAttack : MonoBehaviour
         Vector3 playerPosition = player.transform.position;
         Vector3 direction = (playerPosition - monsterPosition).normalized;
 
+        // Instantiate and add fireball to list
         fireball = Instantiate(fireballPrefab, monsterPosition, Quaternion.identity);
-        ActiveFireballs.Add(fireball);
+        activeFireballs.Add(fireball);
 
+        // Move fireball towards player
         while (IsVisibleOnCamera(fireball.transform.position))
         {
             fireball.transform.position += direction * Time.deltaTime * fireballSpeed;
             yield return null;
         }
 
-        ActiveFireballs.Remove(fireball);
-        Destroy(fireball);
+        Destroy(fireball.gameObject);
+        activeFireballs.Remove(fireball);
     }
 
     private IEnumerator ResetFireCooldown()

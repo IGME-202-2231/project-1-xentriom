@@ -134,6 +134,8 @@ GameObject:
   - component: {fileID: 49930727}
   - component: {fileID: 49930728}
   - component: {fileID: 49930729}
+  - component: {fileID: 49930730}
+  - component: {fileID: 49930731}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -187,6 +189,32 @@ MonoBehaviour:
   player: {fileID: 391793931}
   fireballPrefab: {fileID: 1854095719733262625, guid: a611c4f190af4334ebbcc14538a4be79, type: 3}
   cam: {fileID: 519420031}
+--- !u!114 &49930730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49930726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d83c40b692f9014da5f386f1b058072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSprite: {fileID: 391793931}
+--- !u!114 &49930731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49930726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f72026a1480ac4b90ad742c3f29cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textPrefab: {fileID: 3841013928892649986, guid: 0800b77c7d70b70489652f8c18062308, type: 3}
 --- !u!1 &391793930
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +230,7 @@ GameObject:
   - component: {fileID: 391793936}
   - component: {fileID: 391793935}
   - component: {fileID: 391793937}
+  - component: {fileID: 391793938}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -424,6 +453,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dagger: {fileID: 7953796624672560891, guid: 2fbeab3323c7d2d49ae220ef1daed1b3, type: 3}
+--- !u!114 &391793938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391793930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a452cc9a2486b44b16b5b2322323e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 391793931}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
