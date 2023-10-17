@@ -35,7 +35,10 @@ public class UIManager : MonoBehaviour
                 text.anchor = TextAnchor.MiddleCenter;
                 text.text = "Game Over";
                 text.transform.position = new Vector3(0f, 0f, 0f);
-                StartCoroutine(WaitAndLoad(5f));
+                StartCoroutine(WaitAndLoad(0.5f));
+                break;
+            default:
+                text.text = "Health: undetermined";
                 break;
         }
     }

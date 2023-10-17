@@ -8,12 +8,12 @@ public class MonsterAttack : MonoBehaviour
     private RoundManager roundManager;
     [SerializeField] SpriteRenderer player;
     [SerializeField] SpriteRenderer fireballPrefab;
-    [SerializeField] Camera cam;
     SpriteRenderer fireball;
     private float fireballSpeed = 10f;
     private bool canFire;
 
     private List<SpriteRenderer> activeFireballs = new List<SpriteRenderer>();
+    private List<SpriteInfo> spriteInfos = new List<SpriteInfo>();
     private List<SpriteRenderer> spawned = new List<SpriteRenderer>();
 
     public List<SpriteRenderer> ActiveFireballs
@@ -22,10 +22,22 @@ public class MonsterAttack : MonoBehaviour
         set { activeFireballs = value; }
     }
 
+    public List<SpriteInfo> ActiveFireballSprites
+    {
+        get
+        {
+            for (int i = 0; i < activeFireballs.Count; i++)
+            {
+                spriteInfos.Add(activeFireballs[i].GetComponent<SpriteInfo>());
+            }
+            return spriteInfos;
+        }
+        set { spriteInfos = value; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main;
         roundManager = FindObjectOfType<RoundManager>();
         spawned = roundManager.SpawnedMonsters;
         canFire = true;
@@ -36,7 +48,7 @@ public class MonsterAttack : MonoBehaviour
     {
         for (int i = 0; i < spawned.Count; i++)
         {
-            if (IsVisibleOnCamera(spawned[i].transform.position) && canFire)
+            if (canFire)
             {
                 StartCoroutine(FireProjectile(spawned[i].transform.position));
                 canFire = false;
@@ -55,25 +67,16 @@ public class MonsterAttack : MonoBehaviour
         activeFireballs.Add(fireball);
 
         // Move fireball towards player
-        while (IsVisibleOnCamera(fireball.transform.position))
+        while (fireball != null)
         {
             fireball.transform.position += direction * Time.deltaTime * fireballSpeed;
             yield return null;
         }
-
-        Destroy(fireball.gameObject);
-        activeFireballs.Remove(fireball);
     }
 
     private IEnumerator ResetFireCooldown()
     {
         yield return new WaitForSeconds(2f);
         canFire = true;
-    }
-
-    private bool IsVisibleOnCamera(Vector3 position)
-    {
-        Vector3 viewportPos = cam.WorldToViewportPoint(position);
-        return viewportPos.x >= 0 && viewportPos.x <= 1 && viewportPos.y >= 0 && viewportPos.y <= 1;
     }
 }

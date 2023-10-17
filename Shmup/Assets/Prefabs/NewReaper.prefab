@@ -109,5 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4bcbd2f8e356749a64f944d9597382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 3626916397498700004, guid: 74d7e1338b6436c45981ef48b50a771c, type: 3}
-  rectSize: {x: 1, y: 1}
+  sRenderer: {fileID: 7797388150440097023}
+--- !u!212 &7797388150440097023 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3626916397498700004, guid: 74d7e1338b6436c45981ef48b50a771c, type: 3}
+  m_PrefabInstance: {fileID: 6800582817725113371}
+  m_PrefabAsset: {fileID: 0}

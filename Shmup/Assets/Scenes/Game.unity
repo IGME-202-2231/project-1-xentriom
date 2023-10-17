@@ -134,8 +134,8 @@ GameObject:
   - component: {fileID: 49930727}
   - component: {fileID: 49930728}
   - component: {fileID: 49930729}
-  - component: {fileID: 49930730}
   - component: {fileID: 49930731}
+  - component: {fileID: 49930732}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -188,20 +188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 391793931}
   fireballPrefab: {fileID: 1854095719733262625, guid: a611c4f190af4334ebbcc14538a4be79, type: 3}
-  cam: {fileID: 519420031}
---- !u!114 &49930730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49930726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d83c40b692f9014da5f386f1b058072, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSprite: {fileID: 391793931}
 --- !u!114 &49930731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +201,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textPrefab: {fileID: 3841013928892649986, guid: 0800b77c7d70b70489652f8c18062308, type: 3}
+--- !u!114 &49930732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49930726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1462431ea1d1e44bc98c0b5cfb35a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &391793930
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,8 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4bcbd2f8e356749a64f944d9597382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 391793931}
-  rectSize: {x: 1, y: 1}
+  sRenderer: {fileID: 391793931}
 --- !u!114 &391793936
 MonoBehaviour:
   m_ObjectHideFlags: 0

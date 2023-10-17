@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = 3;
+        health = 10;
     }
 
     // Update is called once per frame
@@ -28,9 +28,5 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Player Damaged");
         health--;
-        if (health <= 0)
-        {
-            Destroy(player.gameObject);
-        }
     }
 }

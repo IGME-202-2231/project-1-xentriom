@@ -21,6 +21,9 @@ public class Collision : MonoBehaviour
     private List<Vector2[]> fireballBounds = new List<Vector2[]>();
     private List<Vector2[]> daggerBounds = new List<Vector2[]>();
 
+    private SpriteInfo playerSpriteInfo;
+    private List<SpriteInfo> fireballSpriteInfo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,24 +37,25 @@ public class Collision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        EnemyAttacksToPlayerCollision();
+
+        playerSpriteInfo = playerSprite.GetComponent<SpriteInfo>();
+
         // Set the player's bounds
-        playerBounds[0] = new Vector2(
-            playerSprite.GetComponent<SpriteInfo>().RectMin.x, 
-            playerSprite.GetComponent<SpriteInfo>().RectMax.x);
-        playerBounds[1] = new Vector2(
-            playerSprite.GetComponent<SpriteInfo>().RectMin.y,
-            playerSprite.GetComponent<SpriteInfo>().RectMax.y);
+        playerBounds[0] = playerSprite.GetComponent<SpriteInfo>().RectMin;
+        playerBounds[1] = playerSprite.GetComponent<SpriteInfo>().RectMax;
 
         // Get list of spawned monsters and set their bounds
         spawnedMonsters = roundManager.SpawnedMonsters;
         for (int i = 0; i < spawnedMonsters.Count; i++)
         {
-            SpriteRenderer monster = spawnedMonsters[i];
-            Bounds bounds = monster.bounds;
-
             Vector2[] boundsArray = new Vector2[2];
-            boundsArray[0] = new Vector2(bounds.min.x, bounds.max.x);
-            boundsArray[1] = new Vector2(bounds.min.y, bounds.max.y);
+            boundsArray[0] = new Vector2(
+                spawnedMonsters[i].GetComponent<SpriteInfo>().RectMin.x,
+                spawnedMonsters[i].GetComponent<SpriteInfo>().RectMax.x);
+            boundsArray[1] = new Vector2(
+                spawnedMonsters[i].GetComponent<SpriteInfo>().RectMin.y,
+                spawnedMonsters[i].GetComponent<SpriteInfo>().RectMax.y);
 
             monsterBounds.Add(boundsArray);
         }
@@ -60,12 +64,13 @@ public class Collision : MonoBehaviour
         activeFireballs = monsterAttack.ActiveFireballs;
         for (int i = 0; i < activeFireballs.Count; i++)
         {
-            SpriteRenderer fireball = activeFireballs[i];
-            Bounds bounds = fireball.bounds;
-
             Vector2[] boundsArray = new Vector2[2];
-            boundsArray[0] = new Vector2(bounds.min.x, bounds.max.x);
-            boundsArray[1] = new Vector2(bounds.min.y, bounds.max.y);
+            boundsArray[0] = new Vector2(
+                activeFireballs[i].GetComponent<SpriteInfo>().RectMin.x,
+                activeFireballs[i].GetComponent<SpriteInfo>().RectMax.x);
+            boundsArray[1] = new Vector2(
+                activeFireballs[i].GetComponent<SpriteInfo>().RectMin.y,
+                activeFireballs[i].GetComponent<SpriteInfo>().RectMax.y);
 
             fireballBounds.Add(boundsArray);
         }
@@ -84,18 +89,23 @@ public class Collision : MonoBehaviour
             daggerBounds.Add(boundsArray);
         }
 
-        // Check if firefalls collide with player
+/*        // Check if firefalls collide with player
         for (int i = 0; i < activeFireballs.Count; i++)
         {
+            Vector2 playerX = new Vector2(playerBounds[0].x, playerBounds[1].x);
+            Vector2 playerY = new Vector2(playerBounds[0].y, playerBounds[1].y);
+
+            Debug.Log(IsColliding(playerX, playerY, fireballBounds[i][0], fireballBounds[i][0]));
+
             // Sprite A = player, Sprite B = fireball
-            if (IsColliding(playerBounds[0], playerBounds[1], fireballBounds[i][0], fireballBounds[i][0]))
+            if (IsColliding(playerX, playerY, fireballBounds[i][0], fireballBounds[i][0]))
             {
                 // Remove and destroy fireball, and decrease player health
                 Destroy(activeFireballs[i].gameObject);
                 monsterAttack.ActiveFireballs.Remove(activeFireballs[i]);
                 player.DamagePlayer();
             }
-        }
+        }*/
 
         // Check if daggers collide with monsters
         for (int i = 0; i < activeDaggers.Count; i++)
@@ -120,16 +130,54 @@ public class Collision : MonoBehaviour
     /// <returns>True if they collide</returns>
     public bool IsColliding(Vector2 AspriteX, Vector2 AspriteY, Vector2 BspriteX, Vector2 BspriteY)
     {
-        if (AspriteX.y < BspriteX.x || AspriteX.x > BspriteX.y)
+        if (BspriteX.x < AspriteX.y && 
+            BspriteX.y > AspriteX.x && 
+            AspriteY.x < AspriteY.y && 
+            AspriteY.y > AspriteY.x)
         {
-            return false; // No horizontal overlap
+            return true;
         }
+        return false;
+    }
 
-        if (AspriteY.y < BspriteY.x || AspriteY.x > BspriteY.y)
+    public bool CheckCollision(SpriteInfo spriteA, SpriteInfo spriteB)
+    {
+        if (spriteB.RectMin.x < spriteA.RectMax.x &&
+            spriteB.RectMax.x > spriteA.RectMin.x &&
+            spriteB.RectMin.y < spriteA.RectMax.y &&
+            spriteB.RectMax.y > spriteA.RectMin.y)
         {
-            return false; // No vertical overlap
+            return true;
         }
+        return false;
+    }
 
-        return true;
+    /// <summary>
+    /// Checks if the enemy attacks are colliding with the player
+    /// </summary>
+    public void EnemyAttacksToPlayerCollision()
+    {
+        for (int i = 0; i < activeFireballs.Count; i++)
+        {
+            if (CheckCollision(playerSpriteInfo, fireballSpriteInfo[i]))
+            {
+                player.DamagePlayer();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Checks if the player attacks are colliding with the enemy
+    /// </summary>
+    public void PlayerAttacksToEnemyCollision()
+    {
+
+    }
+
+    public void OutOfBounds()
+    {
+        // Check if fireballs and daggers are out of bounds
+
+        // Check if monsters are out of left bounds
     }
 }

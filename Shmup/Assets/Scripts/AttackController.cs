@@ -7,13 +7,13 @@ public class AttackController : MonoBehaviour
 {
     [SerializeField] SpriteRenderer dagger;
     SpriteRenderer newDagger;
-    private Camera cam;
     private float lastThrown;
     private float cooldown = 0.6f;
     private float speed = 16f;
     private float spin = 500f;
 
     private List<SpriteRenderer> activeDaggers = new List<SpriteRenderer>();
+    private List<SpriteInfo> spriteInfos = new List<SpriteInfo>();
 
     public List<SpriteRenderer> ActiveDaggers
     {
@@ -21,16 +21,28 @@ public class AttackController : MonoBehaviour
         set { activeDaggers = value; }
     }
 
+    public List<SpriteInfo> ActiveDaggerSprites
+    {
+        get
+        {
+            for (int i = 0; i < activeDaggers.Count; i++)
+            {
+                spriteInfos.Add(activeDaggers[i].GetComponent<SpriteInfo>());
+            }
+            return spriteInfos;
+        }
+        set { spriteInfos = value; }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        cam = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckDaggersOutsideCameraView();
+        
     }
 
     public void Swing()
@@ -52,7 +64,7 @@ public class AttackController : MonoBehaviour
             Vector2 direction = (mousePosition - (Vector2)transform.position).normalized;
 
             // Start a coroutine to move the dagger in the direction of the mouse
-            StartCoroutine(MoveDagger(newDagger.transform, direction));
+            StartCoroutine(MoveDagger(newDagger, direction));
 
             lastThrown = currentTime;
         }
@@ -61,40 +73,21 @@ public class AttackController : MonoBehaviour
     /// <summary>
     /// A coroutine that moves the dagger with a constant speed and rotation
     /// </summary>
-    /// <param name="daggerTransform"></param>
+    /// <param name="currentDagger"></param>
     /// <param name="direction"></param>
     /// <returns></returns>
-    IEnumerator MoveDagger(Transform daggerTransform, Vector2 direction)
+    IEnumerator MoveDagger(SpriteRenderer currentDagger, Vector2 direction)
     {
         // While the dagger is active in the scene
-        while (daggerTransform.gameObject.activeSelf)
+        while (currentDagger.gameObject.activeSelf && currentDagger != null)
         {
             // Move the dagger by adding the direction vector multiplied by speed and time
-            daggerTransform.position += (Vector3)direction * speed * Time.deltaTime;
+            currentDagger.transform.position += (Vector3)direction * speed * Time.deltaTime;
 
             // Rotate the dagger by adding the spin value multiplied by time
-            daggerTransform.Rotate(0, 0, spin * Time.deltaTime);
+            currentDagger.transform.Rotate(0, 0, spin * Time.deltaTime);
 
             yield return null;
-        }
-    }
-
-    public void CheckDaggersOutsideCameraView()
-    {
-        for (int i = activeDaggers.Count - 1; i >= 0; i--)
-        {
-            SpriteRenderer daggerRenderer = activeDaggers[i];
-            Vector3 daggerViewportPosition = cam.WorldToViewportPoint(daggerRenderer.transform.position);
-
-            // Check if dagger is outside the camera view
-            if (daggerViewportPosition.x < 0 || daggerViewportPosition.x > 1 || daggerViewportPosition.y < 0 || daggerViewportPosition.y > 1)
-            {
-                // Remove dagger from the active daggers list
-                activeDaggers.RemoveAt(i);
-
-                // Destroy the game object
-                Destroy(daggerRenderer.gameObject);
-            }
         }
     }
 }

@@ -14,12 +14,26 @@ public class RoundManager : MonoBehaviour
     
     // Monster variables
     private List<SpriteRenderer> spawnedMonsters = new List<SpriteRenderer>();
+    private List<SpriteInfo> spriteInfos = new List<SpriteInfo>();
     [SerializeField] SpriteRenderer flyingMonsterPrefab;
     [SerializeField] SpriteRenderer groundedMonsterPrefab;
 
     public List<SpriteRenderer> SpawnedMonsters { 
         get { return spawnedMonsters; } 
         set { spawnedMonsters = value;}    
+    }
+
+    public List<SpriteInfo> SpawnedMonsterSprites
+    {
+        get
+        {
+            for (int i = 0; i < spawnedMonsters.Count; i++)
+            {
+                spriteInfos.Add(spawnedMonsters[i].GetComponent<SpriteInfo>());
+            }
+            return spriteInfos;
+        }
+        set { spriteInfos = value; }
     }
 
     public SpriteRenderer SpawnFlyingMonster()
