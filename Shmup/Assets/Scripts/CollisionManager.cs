@@ -139,4 +139,36 @@ public class CollisionManager : MonoBehaviour
             }
         }
     }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+
+        Gizmos.DrawWireCube(playerSprite.transform.position, new Vector3(playerSprite.RectMax.x - playerSprite.RectMin.x, playerSprite.RectMax.y - playerSprite.RectMin.y, 0f));
+        for (int i = 0; i < activeFireballs.Count; i++)
+        {
+            Gizmos.DrawWireCube(
+                activeFireballs[i].transform.position, new Vector3(
+                    activeFireballs[i].GetComponent<SpriteInfo>().RectMax.x - activeFireballs[i].GetComponent<SpriteInfo>().RectMin.x,
+                    activeFireballs[i].GetComponent<SpriteInfo>().RectMax.y - activeFireballs[i].GetComponent<SpriteInfo>().RectMin.y, 
+                    0f));
+        }
+        for (int i = 0; i < activeDaggers.Count; i++)
+        {
+            Gizmos.DrawWireCube(
+                activeDaggers[i].transform.position, new Vector3(
+                    activeDaggers[i].GetComponent<SpriteInfo>().RectMax.x - activeDaggers[i].GetComponent<SpriteInfo>().RectMin.x,
+                    activeDaggers[i].GetComponent<SpriteInfo>().RectMax.y - activeDaggers[i].GetComponent<SpriteInfo>().RectMin.y,
+                    0f));
+        }
+        for (int i = 0; i < spawnedMonsters.Count; i++)
+        {
+            Gizmos.DrawWireCube(
+                spawnedMonsters[i].transform.position, new Vector3(
+                    spawnedMonsters[i].GetComponent<SpriteInfo>().RectMax.x - spawnedMonsters[i].GetComponent<SpriteInfo>().RectMin.x,
+                    spawnedMonsters[i].GetComponent<SpriteInfo>().RectMax.y - spawnedMonsters[i].GetComponent<SpriteInfo>().RectMin.y,
+                    0f));
+        }
+    }
 }
