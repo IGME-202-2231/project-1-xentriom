@@ -87,7 +87,7 @@ public class MovementController : MonoBehaviour
         // Set the start position, initial velocity, gravity, and time
         Vector3 startPos = objectPosition;
         float initialVelocity = 10f;
-        float gravity = 14f;
+        float gravity = 17f;
         float time = 0f;
 
         // Move the object up through a parabola until it reaches the start position
