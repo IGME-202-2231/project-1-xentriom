@@ -28,7 +28,10 @@ public class AttackController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        foreach (var item in activeDaggers)
+        {
+            Debug.Log(item.transform.position);
+        }
     }
 
     public void Swing()

@@ -15,6 +15,8 @@ public class CollisionManager : MonoBehaviour
     private List<SpriteRenderer> activeFireballs = new List<SpriteRenderer>();
     private List<SpriteRenderer> activeDaggers = new List<SpriteRenderer>();
 
+    private List<Vector2> newDaggerBounds;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,8 @@ public class CollisionManager : MonoBehaviour
         roundManager = FindObjectOfType<RoundManager>();
         monsterAttack = FindObjectOfType<MonsterAttack>();
         playerAttack = FindObjectOfType<AttackController>();
+
+        newDaggerCenter = new List<Vector2>();
     }
 
     // Update is called once per frame
@@ -35,6 +39,7 @@ public class CollisionManager : MonoBehaviour
         PlayerAttacksToEnemyCollision();
         EnemyAttacksToPlayerCollision();
         OutOfBounds();
+        OverrideBounds();
     }
 
     public void UpdateListOfCollidables()
@@ -156,7 +161,11 @@ public class CollisionManager : MonoBehaviour
         for (int i = 0; i < activeDaggers.Count; i++)
         {
             Gizmos.DrawWireCube(
-                activeDaggers[i].transform.position, new Vector3(
+                new Vector3(
+                    activeDaggers[i].transform.position.x, 
+                    activeDaggers[i].transform.position.y, 
+                    activeDaggers[i].transform.position.z), 
+                new Vector3(
                     activeDaggers[i].GetComponent<SpriteInfo>().RectMax.x - activeDaggers[i].GetComponent<SpriteInfo>().RectMin.x,
                     activeDaggers[i].GetComponent<SpriteInfo>().RectMax.y - activeDaggers[i].GetComponent<SpriteInfo>().RectMin.y,
                     0f));
@@ -168,6 +177,20 @@ public class CollisionManager : MonoBehaviour
                     spawnedMonsters[i].GetComponent<SpriteInfo>().RectMax.x - spawnedMonsters[i].GetComponent<SpriteInfo>().RectMin.x,
                     spawnedMonsters[i].GetComponent<SpriteInfo>().RectMax.y - spawnedMonsters[i].GetComponent<SpriteInfo>().RectMin.y,
                     0f));
+        }
+    }
+
+    public void OverrideBounds()
+    {
+        for (int i = 0; i < activeDaggers.Count; i++)
+        {
+            newDaggerBounds[0] = new Vector2(
+                activeDaggers[i].GetComponent<SpriteInfo>().RectMin.x, 
+                activeDaggers[i].GetComponent<SpriteInfo>().RectMin.y);
+
+            newDaggerBounds[1] = new Vector2(
+                activeDaggers[i].GetComponent<SpriteInfo>().RectMax.x,
+                activeDaggers[i].GetComponent<SpriteInfo>().RectMax.y);
         }
     }
 }
