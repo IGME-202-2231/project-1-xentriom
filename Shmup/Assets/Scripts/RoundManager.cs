@@ -18,7 +18,8 @@ public class RoundManager : MonoBehaviour
     [SerializeField] SpriteRenderer flyingMonsterPrefab;
     [SerializeField] SpriteRenderer groundedMonsterPrefab;
 
-    public List<SpriteRenderer> SpawnedMonsters { 
+    public List<SpriteRenderer> SpawnedMonsters 
+    { 
         get { return spawnedMonsters; } 
         set { spawnedMonsters = value;}    
     }
@@ -55,6 +56,10 @@ public class RoundManager : MonoBehaviour
 
     private void Update()
     {
+        if (UnityEngine.InputSystem.Keyboard.current.kKey.wasPressedThisFrame)
+        {
+            spawnedMonsters.Clear();
+        }
         if (spawnedMonsters.Count > 0) MoveMonster();
         StartCoroutine(CheckMonstersEmptyCoroutine());
     }

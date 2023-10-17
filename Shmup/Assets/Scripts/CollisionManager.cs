@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-    private Camera camera;
+    private Camera cam;
     private Player player;
     private RoundManager roundManager;
     private MonsterAttack monsterAttack;
@@ -22,7 +22,7 @@ public class CollisionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        camera = Camera.main;
+        cam = Camera.main;
 
         // Find corresponding scripts
         player = FindObjectOfType<Player>();
@@ -108,7 +108,7 @@ public class CollisionManager : MonoBehaviour
             Vector2 fireballMin = fireballSprite.RectMin;
             Vector2 fireballMax = fireballSprite.RectMax;
 
-            if (fireballMax.x < camera.ViewportToWorldPoint(Vector3.zero).x)
+            if (fireballMax.x < cam.ViewportToWorldPoint(Vector3.zero).x)
             {
                 Destroy(activeFireballs[i].gameObject);
                 activeFireballs.RemoveAt(i);
@@ -123,7 +123,7 @@ public class CollisionManager : MonoBehaviour
             Vector2 daggerMin = daggerSprite.RectMin;
             Vector2 daggerMax = daggerSprite.RectMax;
 
-            if (daggerMin.x > camera.ViewportToWorldPoint(Vector3.one).x)
+            if (daggerMin.x > cam.ViewportToWorldPoint(Vector3.one).x)
             {
                 Destroy(activeDaggers[i].gameObject);
                 activeDaggers.RemoveAt(i);
@@ -138,7 +138,7 @@ public class CollisionManager : MonoBehaviour
             Vector2 monsterMin = monsterSprite.RectMin;
             Vector2 monsterMax = monsterSprite.RectMax;
 
-            if (monsterMax.x < camera.ViewportToWorldPoint(Vector3.zero).x)
+            if (monsterMax.x < cam.ViewportToWorldPoint(Vector3.zero).x)
             {
                 Destroy(spawnedMonsters[i].gameObject);
                 spawnedMonsters.RemoveAt(i);
