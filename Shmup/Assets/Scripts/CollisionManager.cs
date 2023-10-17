@@ -11,10 +11,6 @@ public class CollisionManager : MonoBehaviour
     private AttackController playerAttack;
 
     private SpriteInfo playerSprite;
-    private List<SpriteInfo> spawnedMonsterSprites = new List<SpriteInfo>();
-    private List<SpriteInfo> activeFireballSprites = new List<SpriteInfo>();
-    private List<SpriteInfo> activeDaggerSprites = new List<SpriteInfo>();
-
     private List<SpriteRenderer> spawnedMonsters = new List<SpriteRenderer>();
     private List<SpriteRenderer> activeFireballs = new List<SpriteRenderer>();
     private List<SpriteRenderer> activeDaggers = new List<SpriteRenderer>();
@@ -51,9 +47,6 @@ public class CollisionManager : MonoBehaviour
     public void UpdateSpriteInfo()
     {
         playerSprite = player.GetComponent<SpriteInfo>();
-        spawnedMonsterSprites = roundManager.SpawnedMonsterSprites;
-        activeDaggerSprites = playerAttack.ActiveDaggerSprites;
-        activeFireballSprites = monsterAttack.ActiveFireballSprites;
     }
 
     public bool CheckCollisionBetween(SpriteInfo spriteA, SpriteInfo spriteB)
@@ -68,33 +61,36 @@ public class CollisionManager : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Checks if the enemies attach hit player
+    /// </summary>
     public void EnemyAttacksToPlayerCollision()
     {
-        for (int i = 0; i < activeFireballSprites.Count; i++)
+        for (int i = 0; i < activeFireballs.Count; i++)
         {
-            if (CheckCollisionBetween(playerSprite, activeFireballSprites[i]))
+            if (CheckCollisionBetween(playerSprite, activeFireballs[i].GetComponent<SpriteInfo>()))
             {
                 player.DamagePlayer();
                 Destroy(activeFireballs[i].gameObject);
                 activeFireballs.RemoveAt(i);
-                activeFireballSprites.RemoveAt(i);
             }
         }
     }
 
+    /// <summary>
+    /// Check if players attack hit enemy
+    /// </summary>
     public void PlayerAttacksToEnemyCollision()
     {
-        for (int i = 0; i < activeDaggerSprites.Count; i++)
+        for (int i = 0; i < activeDaggers.Count; i++)
         {
-            if (CheckCollisionBetween(activeDaggerSprites[i], spawnedMonsterSprites[i]))
+            if (CheckCollisionBetween(activeDaggers[i].GetComponent<SpriteInfo>(), spawnedMonsters[i].GetComponent<SpriteInfo>()))
             {
                 Destroy(activeDaggers[i].gameObject);
                 activeDaggers.RemoveAt(i);
-                activeDaggerSprites.RemoveAt(i);
 
                 Destroy(spawnedMonsters[i].gameObject);
                 spawnedMonsters.RemoveAt(i);
-                spawnedMonsterSprites.RemoveAt(i);
             }
         }
     }
@@ -102,9 +98,9 @@ public class CollisionManager : MonoBehaviour
     public void OutOfBounds()
     {
         // Check if fireballs are out of bounds
-        for (int i = activeFireballSprites.Count - 1; i >= 0; i--)
+        for (int i = activeFireballs.Count - 1; i >= 0; i--)
         {
-            SpriteInfo fireballSprite = activeFireballSprites[i];
+            SpriteInfo fireballSprite = activeFireballs[i].GetComponent<SpriteInfo>();
             Vector2 fireballMin = fireballSprite.RectMin;
             Vector2 fireballMax = fireballSprite.RectMax;
 
@@ -112,14 +108,13 @@ public class CollisionManager : MonoBehaviour
             {
                 Destroy(activeFireballs[i].gameObject);
                 activeFireballs.RemoveAt(i);
-                activeFireballSprites.RemoveAt(i);
             }
         }
 
         // Check if daggers are out of bounds
-        for (int i = activeDaggerSprites.Count - 1; i >= 0; i--)
+        for (int i = activeDaggers.Count - 1; i >= 0; i--)
         {
-            SpriteInfo daggerSprite = activeDaggerSprites[i];
+            SpriteInfo daggerSprite = activeDaggers[i].GetComponent<SpriteInfo>();
             Vector2 daggerMin = daggerSprite.RectMin;
             Vector2 daggerMax = daggerSprite.RectMax;
 
@@ -127,14 +122,13 @@ public class CollisionManager : MonoBehaviour
             {
                 Destroy(activeDaggers[i].gameObject);
                 activeDaggers.RemoveAt(i);
-                activeDaggerSprites.RemoveAt(i);
             }
         }
 
         // Check if monsters are out of left bounds
-        for (int i = spawnedMonsterSprites.Count - 1; i >= 0; i--)
+        for (int i = spawnedMonsters.Count - 1; i >= 0; i--)
         {
-            SpriteInfo monsterSprite = spawnedMonsterSprites[i];
+            SpriteInfo monsterSprite = spawnedMonsters[i].GetComponent<SpriteInfo>();
             Vector2 monsterMin = monsterSprite.RectMin;
             Vector2 monsterMax = monsterSprite.RectMax;
 
@@ -142,7 +136,6 @@ public class CollisionManager : MonoBehaviour
             {
                 Destroy(spawnedMonsters[i].gameObject);
                 spawnedMonsters.RemoveAt(i);
-                spawnedMonsterSprites.RemoveAt(i);
             }
         }
     }

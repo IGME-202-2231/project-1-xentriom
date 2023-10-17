@@ -13,25 +13,11 @@ public class AttackController : MonoBehaviour
     private float spin = 500f;
 
     private List<SpriteRenderer> activeDaggers = new List<SpriteRenderer>();
-    private List<SpriteInfo> spriteInfos = new List<SpriteInfo>();
 
     public List<SpriteRenderer> ActiveDaggers
     {
         get { return activeDaggers; }
         set { activeDaggers = value; }
-    }
-
-    public List<SpriteInfo> ActiveDaggerSprites
-    {
-        get
-        {
-            for (int i = 0; i < activeDaggers.Count; i++)
-            {
-                spriteInfos.Add(activeDaggers[i].GetComponent<SpriteInfo>());
-            }
-            return spriteInfos;
-        }
-        set { spriteInfos = value; }
     }
 
     // Start is called before the first frame update

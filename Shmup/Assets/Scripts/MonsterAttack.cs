@@ -13,26 +13,12 @@ public class MonsterAttack : MonoBehaviour
     private bool canFire;
 
     private List<SpriteRenderer> activeFireballs = new List<SpriteRenderer>();
-    private List<SpriteInfo> spriteInfos = new List<SpriteInfo>();
     private List<SpriteRenderer> spawned = new List<SpriteRenderer>();
 
     public List<SpriteRenderer> ActiveFireballs
     {
         get { return activeFireballs; }
         set { activeFireballs = value; }
-    }
-
-    public List<SpriteInfo> ActiveFireballSprites
-    {
-        get
-        {
-            for (int i = 0; i < activeFireballs.Count; i++)
-            {
-                spriteInfos.Add(activeFireballs[i].GetComponent<SpriteInfo>());
-            }
-            return spriteInfos;
-        }
-        set { spriteInfos = value; }
     }
 
     // Start is called before the first frame update
