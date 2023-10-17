@@ -449,7 +449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1763cbd607614844b8f05761225df686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dagger: {fileID: 7953796624672560891, guid: 2fbeab3323c7d2d49ae220ef1daed1b3, type: 3}
+  dagger: {fileID: 3162534638135978175, guid: 6a735283c5cdced4ca31bdb94453857e, type: 3}
 --- !u!114 &391793938
 MonoBehaviour:
   m_ObjectHideFlags: 0

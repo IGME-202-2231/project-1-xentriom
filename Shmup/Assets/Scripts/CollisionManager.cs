@@ -144,7 +144,6 @@ public class CollisionManager : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-
         Gizmos.DrawWireCube(playerSprite.transform.position, new Vector3(playerSprite.RectMax.x - playerSprite.RectMin.x, playerSprite.RectMax.y - playerSprite.RectMin.y, 0f));
         for (int i = 0; i < activeFireballs.Count; i++)
         {
