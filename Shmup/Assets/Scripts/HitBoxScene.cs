@@ -13,7 +13,7 @@ public class HitBoxScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (UnityEngine.InputSystem.Keyboard.current.digit7Key.wasPressedThisFrame)
+        if (UnityEngine.InputSystem.Keyboard.current.backspaceKey.wasPressedThisFrame)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Start");
         }

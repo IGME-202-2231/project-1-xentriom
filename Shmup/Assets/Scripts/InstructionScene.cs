@@ -17,5 +17,9 @@ public class InstructionScene : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Start");
         }
+        if (UnityEngine.InputSystem.Keyboard.current.digit7Key.wasPressedThisFrame)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("HitBoxes");
+        }
     }
 }
