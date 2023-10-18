@@ -43,7 +43,7 @@ Defeat the swarm of monsters approaching you. Blast them with your gun, slice th
 
 ## Known Issues
 
-_List any errors, lack of error checking, or specific information that I need to know to run your program_
+- The collision bounds for dagger, bat, and reaper are off
 
 ### Requirements not completed
 
