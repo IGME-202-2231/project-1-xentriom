@@ -39,8 +39,8 @@ Defeat the swarm of monsters approaching you. Slice them with your dagger or sli
 -   Mutated Bat assets: https://pixfinity.itch.io/the-dungeon-pack-1
 -   Undead executioner asset: https://darkpixel-kronovi.itch.io/undead-executioner
 -   Background music: https://www.chosic.com/download-audio/27972/
--   Background: ![image](https://github.com/IGME-202-2231/project-1-xentriom/assets/114116827/7c7c9f09-ae6f-4ef9-8cfe-9f203004aa6b)
-
+-   Background: https://www.bing.com/images/create/a-2d-forest-32f4th-view-with-fantasy-and-medieval-a/651f6fe3bc83430ca4857c388b513ada?id=AUxmLtFyLb0EcjB3GHYolQ%3d%3d&view=detailv2&idpp=genimg
+    -> Then edited with Adobe Photoshop
 
 ## Known Issues
 
