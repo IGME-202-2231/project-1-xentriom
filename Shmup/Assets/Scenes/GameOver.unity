@@ -516,7 +516,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2137019519}
   - component: {fileID: 2137019520}
-  - component: {fileID: 2137019521}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -551,17 +550,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2524431e2046f439327668e20ffef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textPrefab: {fileID: 1694858892164212845, guid: fc6e3488f07f1744db67fba6b2e42160, type: 3}
---- !u!114 &2137019521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137019518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72627f274a3e05d4b8db0910cdeacdc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scorePrefab: {fileID: 1702103058177695400, guid: 6568474b5fd3e7e4b86beb44cde858b7, type: 3}

@@ -22,11 +22,6 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         scoreText.text = "Score: " + score;
-
-        if (SceneManager.GetActiveScene().name == "GameOver")
-        {
-            scoreText.text = "";
-        }
     }
 
     /// <summary>
