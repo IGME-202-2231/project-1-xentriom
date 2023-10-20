@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollisionManager : MonoBehaviour
 {
     private Camera cam;
+    private ScoreManager scoreManager;
     private Player player;
     private RoundManager roundManager;
     private MonsterAttack monsterAttack;
@@ -19,6 +20,7 @@ public class CollisionManager : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
+        scoreManager = FindObjectOfType<ScoreManager>();
 
         // Find corresponding scripts
         player = FindObjectOfType<Player>();
@@ -91,6 +93,8 @@ public class CollisionManager : MonoBehaviour
 
                 Destroy(spawnedMonsters[i].gameObject);
                 spawnedMonsters.RemoveAt(i);
+
+                scoreManager.DefeatedMonster();
             }
         }
     }

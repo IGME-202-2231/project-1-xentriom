@@ -11,6 +11,7 @@ public class RoundManager : MonoBehaviour
     private TextMesh text;
 
     [SerializeField] int round;
+    private ScoreManager scoreManager;
     
     // Monster variables
     private List<SpriteRenderer> spawnedMonsters = new List<SpriteRenderer>();
@@ -35,6 +36,7 @@ public class RoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        scoreManager = GetComponent<ScoreManager>();
         text = Instantiate(textPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity);
         round = 0;
         StartNextRound();
@@ -59,23 +61,7 @@ public class RoundManager : MonoBehaviour
         text.text = $"Round: {round}";
         SpawnMonster(round);
         CheckMonstersEmptyAndStartNextRound();
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="seconds"></param>
-    /// <returns></returns>
-    IEnumerator DisableTextAfterSeconds(float seconds)
-    {
-        // Set the text active
-        text.gameObject.SetActive(true);
-
-        // Wait for the specified seconds
-        yield return new WaitForSeconds(seconds);
-
-        // Set the text inactive
-        text.gameObject.SetActive(false);
+        scoreManager.CompletedRound();
     }
 
     /// <summary>
