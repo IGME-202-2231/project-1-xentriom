@@ -11,13 +11,13 @@
 
 -   Camera Orientation: Side view
 -   Camera Movement: The camera will not move at the of writing this.
--   Player Health: The player and enemies will all have their own respective health bar.
+-   Player Health: The player will have 3 health.
 -   End Condition: For the game to end the player must lose all of their health.
--   Scoring: Killing the enemies will grant points, finishing each wave will also grant points and additional points will be rewarded if no damage was taken.
+-   Scoring: Killing the enemies will grant points and finishing each wave will also grant points.
 
 ### Game Description
 
-Defeat the swarm of monsters approaching you. Blast them with your gun, slice them with your sword, and maybe dodge and weave their attacks. How long will you last against the endless waves of enemies?
+Defeat the swarm of monsters approaching you. Slice them with your dagger or slice them with your sword, and maybe dodge and weave their attacks. How long will you last against the endless waves of enemies?
 
 ### Controls
 
@@ -30,9 +30,8 @@ Defeat the swarm of monsters approaching you. Blast them with your gun, slice th
 
 ## You Additions
 
-- Various enemies
-- Stamina bar
-- Customizable load-outs (Each gun/sword will have different damage/range/reload)
+- Different Scenes
+- Parallax background
 
 ## Sources
 
@@ -40,6 +39,8 @@ Defeat the swarm of monsters approaching you. Blast them with your gun, slice th
 -   Mutated Bat assets: https://pixfinity.itch.io/the-dungeon-pack-1
 -   Undead executioner asset: https://darkpixel-kronovi.itch.io/undead-executioner
 -   Background music: https://www.chosic.com/download-audio/27972/
+-   Background: ![image](https://github.com/IGME-202-2231/project-1-xentriom/assets/114116827/7c7c9f09-ae6f-4ef9-8cfe-9f203004aa6b)
+
 
 ## Known Issues
 
