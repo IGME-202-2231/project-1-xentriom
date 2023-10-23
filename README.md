@@ -36,6 +36,7 @@ Defeat the swarm of monsters approaching you. Slice them with your dagger or sli
 
 ## Sources
 
+-   Player asset: Made by a friend, Kylie
 -   Dagger assets: https://free-game-assets.itch.io/free-game-icons-daggers
 -   Mutated Bat assets: https://pixfinity.itch.io/the-dungeon-pack-1
 -   Undead executioner asset: https://darkpixel-kronovi.itch.io/undead-executioner
